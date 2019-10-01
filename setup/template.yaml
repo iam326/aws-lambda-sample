@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Setup template
+
+Parameters:
+
+  NamePrefix:
+    Type: String
+
+Resources:
+
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Sub '${NamePrefix}-artifict'
+      AccessControl: Private
+
+  SecretsManagerSampleId:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: !Sub '/${NamePrefix}/id'
+      SecretString: 'hogehoge'
