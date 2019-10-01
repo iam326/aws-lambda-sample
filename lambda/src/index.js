@@ -1,3 +1,5 @@
+'use strict';
+
 const AWS = require('aws-sdk');
 AWS.config.update({region: 'ap-northeast-1'});
 
@@ -16,7 +18,7 @@ exports.handler = async (event, context) => {
   const secretName=`/${process.env.SECRET_NAME}/id`;
   const secret = await getSecretValue(secretName);
 
-  console.log('secret', secret);
+  console.log('secret:', secret);
 
   return {};
 };
