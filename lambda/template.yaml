@@ -5,6 +5,12 @@ Parameters:
 
   NamePrefix:
     Type: String
+  LayerName:
+    Type: String
+    Default: NodeModulesLayer
+  LayerVersion:
+    Type: Number
+    Default: 2
 
 Resources:
 
@@ -21,3 +27,14 @@ Resources:
       Environment:
         Variables:
           SECRET_NAME: !Ref NamePrefix
+      Layers:
+        - !Sub arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${LayerName}:${LayerVersion}
+
+  NodeModulesLayer:
+    Type: 'AWS::Serverless::LayerVersion'
+    Properties:
+      LayerName: !Ref LayerName
+      ContentUri: layer_modules
+      CompatibleRuntimes:
+        - nodejs8.10
+      RetentionPolicy: Retain
