@@ -1,6 +1,8 @@
 'use strict';
 
 const AWS = require('aws-sdk');
+const moment = require('moment');
+
 AWS.config.update({region: 'ap-northeast-1'});
 
 async function getSecretValue(secretName) {
@@ -15,10 +17,14 @@ async function getSecretValue(secretName) {
 }
 
 exports.handler = async (event, context) => {
+  const format='YYYY-MM-DD HH:mm:ss.SSS';
+  console.log(moment().format(format));
+
   const secretName=`/${process.env.SECRET_NAME}/id`;
   const secret = await getSecretValue(secretName);
 
   console.log('secret:', secret);
+  console.log(moment().format(format));
 
   return {};
 };
