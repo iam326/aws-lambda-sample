@@ -5,12 +5,6 @@ Parameters:
 
   NamePrefix:
     Type: String
-  LayerName:
-    Type: String
-    Default: NodeModulesLayer
-  LayerVersion:
-    Type: Number
-    Default: 2
 
 Globals:
 
@@ -20,6 +14,15 @@ Globals:
     MemorySize: 256
 
 Resources:
+
+  NodeModulesLayer:
+    Type: 'AWS::Serverless::LayerVersion'
+    Properties:
+      LayerName: NodeModulesLayer
+      ContentUri: dependencies
+      CompatibleRuntimes:
+        - nodejs8.10
+      RetentionPolicy: Retain
 
   GetSecretsValueFunction:
     Type: 'AWS::Serverless::Function'
@@ -35,7 +38,7 @@ Resources:
         Variables:
           SECRET_NAME: !Ref NamePrefix
       Layers:
-        - !Sub arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${LayerName}:${LayerVersion}
+        - !Ref NodeModulesLayer
       Events:
         Warmup:
           Type: Schedule
@@ -43,12 +46,3 @@ Resources:
             Schedule: rate(1 minute)
             Name: Warmup
             Enabled: false
-
-  NodeModulesLayer:
-    Type: 'AWS::Serverless::LayerVersion'
-    Properties:
-      LayerName: !Ref LayerName
-      ContentUri: layer_modules
-      CompatibleRuntimes:
-        - nodejs8.10
-      RetentionPolicy: Retain
