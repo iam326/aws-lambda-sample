@@ -21,6 +21,7 @@ Resources:
       CodeUri: src/
       Handler: index.handler
       Runtime: nodejs8.10
+      Tracing: Active
       Policies:
         - AWSSecretsManagerGetSecretValuePolicy:
             SecretArn: !Sub 'arn:${AWS::Partition}:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:/${NamePrefix}/*'
