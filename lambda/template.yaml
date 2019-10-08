@@ -36,6 +36,13 @@ Resources:
           SECRET_NAME: !Ref NamePrefix
       Layers:
         - !Sub arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${LayerName}:${LayerVersion}
+      Events:
+        Warmup:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 minute)
+            Name: Warmup
+            Enabled: false
 
   NodeModulesLayer:
     Type: 'AWS::Serverless::LayerVersion'
