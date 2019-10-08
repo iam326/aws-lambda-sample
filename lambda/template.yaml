@@ -12,6 +12,13 @@ Parameters:
     Type: Number
     Default: 2
 
+Globals:
+
+  Function:
+    Runtime: nodejs8.10
+    Timeout: 15
+    MemorySize: 256
+
 Resources:
 
   GetSecretsValueFunction:
@@ -20,7 +27,6 @@ Resources:
       FunctionName: GetSecretsValueFunction
       CodeUri: src/
       Handler: index.handler
-      Runtime: nodejs8.10
       Tracing: Active
       Policies:
         - AWSSecretsManagerGetSecretValuePolicy:
