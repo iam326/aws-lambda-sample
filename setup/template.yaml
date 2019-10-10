@@ -27,8 +27,8 @@ Resources:
           KeyType: HASH
       BillingMode: PROVISIONED
       ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
 
   DynamoEmployeesTable:
     Type: 'AWS::DynamoDB::Table'
@@ -46,8 +46,8 @@ Resources:
           KeyType: RANGE
       BillingMode: PROVISIONED
       ProvisionedThroughput:
-        ReadCapacityUnits: 1
-        WriteCapacityUnits: 1
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5
 
   SecretsManagerSampleId:
     Type: 'AWS::SecretsManager::Secret'
