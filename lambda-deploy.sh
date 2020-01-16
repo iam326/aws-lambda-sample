@@ -23,11 +23,13 @@ cd ..
 sam package \
   --template-file ${SRC_TEMPLATE} \
   --output-template-file ${DST_TEMPLATE} \
+  --force-upload \
   --s3-bucket ${BUCKETNAME}
 
 sam deploy \
   --template-file ${DST_TEMPLATE} \
   --stack-name ${STACKNAME} \
+  --force-upload \
   --capabilities CAPABILITY_IAM \
   --parameter-overrides \
     NamePrefix=${PREFIX}
