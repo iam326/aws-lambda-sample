@@ -16,6 +16,10 @@ cp ${LAMBDA_DIR}/package.json ${LAYER_PATH}
 cp ${LAMBDA_DIR}/yarn.lock ${LAYER_PATH}
 yarn --cwd ${LAYER_PATH} install --production
 
+cd ${LAMBDA_DIR}
+npx tsc src/index.ts
+cd ..
+
 sam package \
   --template-file ${SRC_TEMPLATE} \
   --output-template-file ${DST_TEMPLATE} \
