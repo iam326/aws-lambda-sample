@@ -5,5 +5,13 @@
   "license": "MIT",
   "dependencies": {
     "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.39",
+    "@types/node": "^13.1.7",
+    "aws-lambda": "^1.0.5",
+    "aws-sdk": "^2.604.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.7.4"
   }
 }
