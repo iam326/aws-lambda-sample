@@ -15,40 +15,6 @@ Resources:
       BucketName: !Sub '${NamePrefix}-artifict'
       AccessControl: Private
 
-  DynamoCompaniesTable:
-    Type: 'AWS::DynamoDB::Table'
-    Properties:
-      TableName: !Sub '${NamePrefix}-Companies'
-      AttributeDefinitions:
-        - AttributeName: CompanyId
-          AttributeType: N
-      KeySchema:
-        - AttributeName: CompanyId
-          KeyType: HASH
-      BillingMode: PROVISIONED
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-
-  DynamoEmployeesTable:
-    Type: 'AWS::DynamoDB::Table'
-    Properties:
-      TableName: !Sub '${NamePrefix}-Employees'
-      AttributeDefinitions:
-        - AttributeName: CompanyId
-          AttributeType: N
-        - AttributeName: EmployeeId
-          AttributeType: N
-      KeySchema:
-        - AttributeName: CompanyId
-          KeyType: HASH
-        - AttributeName: EmployeeId
-          KeyType: RANGE
-      BillingMode: PROVISIONED
-      ProvisionedThroughput:
-        ReadCapacityUnits: 5
-        WriteCapacityUnits: 5
-
   SecretsManagerSampleId:
     Type: 'AWS::SecretsManager::Secret'
     Properties:
