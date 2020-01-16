@@ -13,8 +13,8 @@ readonly STACKNAME="${PREFIX}-lambda"
 
 mkdir -p ${LAYER_PATH}
 cp ${LAMBDA_DIR}/package.json ${LAYER_PATH}
-cp ${LAMBDA_DIR}/package-lock.json ${LAYER_PATH}
-npm install --production --prefix ${LAYER_PATH}
+cp ${LAMBDA_DIR}/yarn.lock ${LAYER_PATH}
+yarn --cwd ${LAYER_PATH} install --production
 
 sam package \
   --template-file ${SRC_TEMPLATE} \
